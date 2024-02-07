@@ -60,4 +60,15 @@ public class Grafo {
 	public int getGrau(int vertice) {
 		return adjacencia.get(vertice).size();
 	}
+
+	
+	public Grafo clonarGrafo() {            // método usado em para testes de desempenho
+		Grafo GrafoClone = new Grafo();
+		for (int vertice : adjacencia.keySet()) {
+			for (Aresta aresta : adjacencia.get(vertice)) {
+				GrafoClone.adicionarAresta(vertice, aresta.getVerticeDestino(), aresta.getPeso());
+			}
+		}
+		return GrafoClone ;
+	}
 }

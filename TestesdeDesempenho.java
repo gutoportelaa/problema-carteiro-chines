@@ -1,92 +1,97 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class TestesdeDesempenho {
     
-    public static void main() {
+    public static void main(String[] args) {
         
         TestesdeDesempenho testes = new TestesdeDesempenho();
-
 
 
         Grafo grafoEuleriano = CriarGrafoEulerianoExemplo();
         testes.Testador(grafoEuleriano, "Grafo Euleriano");
 
-        Grafo grafoNaoEuleriano = CriarGrafoNaoEulerianoExemplo();
-        testes.Testador(grafoNaoEuleriano, "Grafo Nao Euleriano");
+       // Grafo grafoNaoEuleriano = CriarGrafoNaoEulerianoExemplo();
+        //testes.Testador(grafoNaoEuleriano, "Grafo Nao Euleriano");
 
-        Grafo grafoBipartido = CriarGrafoBipartidoExemplo();
-        testes.Testador(grafoBipartido, "Grafo Bipartido");
+       // Grafo grafoBipartido = CriarGrafoBipartidoExemplo();
+        //testes.Testador(grafoBipartido, "Grafo Bipartido");
         
-        Grafo grafoArvore = CriarGrafoArvoreExemplo();
-        testes.Testador(grafoArvore, "Grafo Arvore" );
+       // Grafo grafoArvore = CriarGrafoArvoreExemplo();
+        //testes.Testador(grafoArvore, "Grafo Arvore" );
+
         // Outros testes ?
     }
 
 
 
     public void Testador(Grafo exGrafo, String TipodoGrafo){
-        //Algoritmos algoritmos = new Algoritmos();   // para o caso de testar somente o Dijksra
+        Algoritmos algoritmos = new Algoritmos();   // para o caso de testar somente o Dijksra
         ResolverCarteiroChines ResolverCarteiroChines = new ResolverCarteiroChines();
         Grafo grafo = exGrafo;
 
 
         System.out.println("\nTeste de Desempenho para " + TipodoGrafo + ":\n");
 
-        System.out.println(TipodoGrafo + ":");
+        System.out.println(TipodoGrafo + "original :");
         grafo.imprimirGrafo();
+
 
 
         long somaTempos = 0;
         int numeroExecucoes = 5;
 
+        List<Grafo> clones = new ArrayList<>();
+        for (int i = 0; i < numeroExecucoes; i++) {
+        clones.add(grafo.clonarGrafo());            // metodo criado na classe grafos
+        }
+
 
         for (int i = 0; i < numeroExecucoes; i++) {    // laço de desemprenho
+            Grafo grafoClone = clones.get(i);
 
-            long tempoInicial = System.currentTimeMillis();
-            ResolverCarteiroChines.AlgResolverCarteiroChines(grafo);
-            long tempoFinal = System.currentTimeMillis();
+            long tempoInicial = System.nanoTime();
+          //  algoritmos.AlgResolveCarteiroChines();
+
+            ResolverCarteiroChines.AlgResolverCarteiroChines(grafoClone);
+            long tempoFinal = System.nanoTime();
             long tempoExecucao = tempoFinal - tempoInicial;
-
            // System.out.println("Execução " + (i + 1) + ": Tempo de execução do ResolveCarteiroChines: " + tempoExecucao + " milissegundos");
            //System.out.println("Tempo de execução médio do algoritmo de Dijkstra em " + TipodoGrafo + " é(são): " + (tempoFinalDijkstra - tempoInicialDijkstra) + " milissegundos");
 
             somaTempos += tempoExecucao;  //somatório
         }
 
+
         // calcula e exibe a média
         long mediaTempos = somaTempos / numeroExecucoes;
-        System.out.println("Tempo médio de execução do algoritmo de Dijkstra em " + TipodoGrafo + " é(são): " + mediaTempos + " milissegundos");
+        System.out.println( "\n\nTempo médio de execução do algoritmo do em " + TipodoGrafo + " é(são): " + mediaTempos + " nanosegundos");
 
     }
         
 
    // pegar exemplos pré-montados
     private static Grafo CriarGrafoEulerianoExemplo() {
-        Grafo grafo = new Grafo();
+        Grafo grafoEuleriano = new Grafo();
 
+        grafoEuleriano.adicionarAresta(1, 2, 1);
+        grafoEuleriano.adicionarAresta(2, 3, 1);
+        grafoEuleriano.adicionarAresta(3, 4, 1);
+        grafoEuleriano.adicionarAresta(4, 1, 1);
+        grafoEuleriano.adicionarAresta(1, 3, 1);
 
-        return grafo;
+        return grafoEuleriano;
     }
+
     private static Grafo CriarGrafoNaoEulerianoExemplo() {
-        Grafo grafo = new Grafo();
+        Grafo grafoNaoeuleriano = new Grafo();
 
-		int a = 1;
-		int b = 2;
-		int c = 3;
-		int d = 4;
-		int e = 5;
-		int f = 6;
 
-		grafo.adicionarAresta(a, b, 1);
-		grafo.adicionarAresta(b, c, 4);
-		grafo.adicionarAresta(a, d, 1);
-		grafo.adicionarAresta(d, e, 3);
-		grafo.adicionarAresta(e, f, 1);
-		grafo.adicionarAresta(f, c, 3);
-		grafo.adicionarAresta(a, e, 2);
-		grafo.adicionarAresta(b, f, 5);
-		grafo.adicionarAresta(e, c, 1);
 
-        return grafo;
+      
+        return grafoNaoeuleriano;
     }
+    
     private static Grafo CriarGrafoBipartidoExemplo() {
         Grafo grafo = new Grafo();
 
