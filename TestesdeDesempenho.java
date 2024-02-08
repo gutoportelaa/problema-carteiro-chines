@@ -32,8 +32,8 @@ public class TestesdeDesempenho {
 
         System.out.println("\nTeste de Desempenho para " + TipodoGrafo + ":\n");
 
-        System.out.println(TipodoGrafo + "original :");
-        grafo.imprimirGrafo();
+       // System.out.println(TipodoGrafo + "original :");
+        //grafo.imprimirGrafo();
 
 
 
