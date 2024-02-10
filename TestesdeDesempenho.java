@@ -27,7 +27,7 @@ public class TestesdeDesempenho {
         long somaTempos = 0;
         int numeroExecucoes = 1;
        // grafo.imprimirGrafo();
-        List<Grafo> clones = new ArrayList<>();
+       // List<Grafo> clones = new ArrayList<>();
         for (int i = 0; i < numeroExecucoes; i++) {
         //clones.add(grafo.clonarGrafo());            // metodo criado na classe grafos
         }
