@@ -13,6 +13,8 @@ public class TestesdeDesempenho {
         Grafo grafoNaoEuleriano30 = CriarGrafoNaoEulerianoExemplo30();
         testes.Testador(grafoNaoEuleriano30, "Grafo Nao Euleriano(30 vertices)");
 
+        Grafo grafoNaoEuleriano50 = CriarGrafoNaoEulerianoExemplo50();
+        testes.Testador(grafoNaoEuleriano50, "Grafo Nao Euleriano(50 vertices)");
     }
 
 
@@ -33,9 +35,9 @@ public class TestesdeDesempenho {
             //Grafo Grafo  = clones.get(i);
   
 
-            long tempoInicial = System.;
+            long tempoInicial = System.currentTimeMillis();
             ResolverCarteiroChines.AlgResolverCarteiroChines(grafo); 
-            long tempoFinal = System.nanoTime();
+            long tempoFinal = System.currentTimeMillis();
             long tempoExecucao = tempoFinal - tempoInicial;
 
             somaTempos += tempoExecucao;  //somatório
