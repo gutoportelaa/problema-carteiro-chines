@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class TestesdeDesempenho {
     
@@ -15,6 +14,9 @@ public class TestesdeDesempenho {
 
         Grafo grafoNaoEuleriano50 = CriarGrafoNaoEulerianoExemplo50();
         testes.Testador(grafoNaoEuleriano50, "Grafo Nao Euleriano(50 vertices)");
+
+        Grafo grafoNaoEuleriano100 = CriarGrafoNaoEulerianoExemplo100();
+        testes.Testador(grafoNaoEuleriano100, "Grafo Nao Euleriano(100 vertices)");
     }
 
 
@@ -27,10 +29,6 @@ public class TestesdeDesempenho {
         long somaTempos = 0;
         int numeroExecucoes = 1;
        // grafo.imprimirGrafo();
-       // List<Grafo> clones = new ArrayList<>();
-        for (int i = 0; i < numeroExecucoes; i++) {
-        //clones.add(grafo.clonarGrafo());            // metodo criado na classe grafos
-        }
         for (int i = 0; i < numeroExecucoes; i++) {    // laço de desempenho
             //Grafo Grafo  = clones.get(i);
   
